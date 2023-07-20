@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+  <appenders>
+
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d %-5p %F:%L - %m%n"/>
+    </Console>
+
+    <File name="SearchFile" fileName="SPBMetro/logs/search.log" append="true" immediateFlush="true">
+      <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      <MarkerFilter marker="INPUT_HISTORY" onMatch="ACCEPT" onMismatch="DENY"/>
+    </File>
+
+    <File name="Exception" fileName="SPBMetro/logs/exception.log" append="true" immediateFlush="true">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </File>
+
+    <File name="InputError" fileName="SPBMetro/logs/input_error.log" append="true" immediateFlush="true">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      <MarkerFilter marker="INVALID_STATIONS" onMatch="ACCEPT" onMismatch="DENY"/>
+    </File>
+  </appenders>
+
+  <loggers>
+    <root level="INFO">
+      <appender-ref ref="SearchFile" level="INFO"/>
+      <appender-ref ref="InputError" level="WARN"/>
+      <appender-ref ref="Exception" level="ERROR"/>
+    </root>
+
+  </loggers>
+</configuration>
